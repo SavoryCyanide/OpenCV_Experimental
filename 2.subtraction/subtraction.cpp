@@ -8,6 +8,7 @@ using namespace cv;
 
 int main()
 {
+    String pointless;
     Mat frame1, frame2, subtracted, cvtGray;
     VideoCapture cap(0);
     std::cout << "Initialized\n";
@@ -20,6 +21,7 @@ int main()
     std::cout << "Frame1\n";
 
     //Figure out how to get gpio working
+    std::cin >> pointless; 
 
     //Capture and display lit frame
     cap >> frame2;
