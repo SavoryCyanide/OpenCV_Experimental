@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/Desktop/vis2017/testing_area/openCV_Experimental/3.video/video.cpp
+iostream
+-
+opencv2/highgui/highgui.hpp
+/home/ubuntu/Desktop/vis2017/testing_area/openCV_Experimental/3.video/opencv2/highgui/highgui.hpp
+opencv2/imgproc/imgproc.hpp
+/home/ubuntu/Desktop/vis2017/testing_area/openCV_Experimental/3.video/opencv2/imgproc/imgproc.hpp
+
