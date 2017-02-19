@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ubuntu/Desktop/vis2017/testing_area/openCV_Experimental/3.video/video.cpp" "/home/ubuntu/Desktop/vis2017/testing_area/openCV_Experimental/3.video/build/CMakeFiles/cv_video.dir/video.cpp.o"
+  "/home/ubuntu/Desktop/forpush/openCV_Experimental/3.video/video.cpp" "/home/ubuntu/Desktop/forpush/openCV_Experimental/3.video/build/CMakeFiles/cv_video.dir/video.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
