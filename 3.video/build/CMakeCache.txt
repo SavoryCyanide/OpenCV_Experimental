@@ -10,9 +10,9 @@
 # TYPE is a hint to GUIs for the type of VALUE, DO NOT EDIT TYPE!.
 # VALUE is the current value for the KEY.
 
-########################
+#########################
 # EXTERNAL cache entries
-########################
+#########################
 
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
