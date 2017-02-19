@@ -1,3 +1,3 @@
-/home/ubuntu/Desktop/vis2017/testing_area/openCV_Experimental/3.video/build/CMakeFiles/edit_cache.dir
-/home/ubuntu/Desktop/vis2017/testing_area/openCV_Experimental/3.video/build/CMakeFiles/rebuild_cache.dir
-/home/ubuntu/Desktop/vis2017/testing_area/openCV_Experimental/3.video/build/CMakeFiles/cv_video.dir
+/home/ubuntu/Desktop/forpush/openCV_Experimental/3.video/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/Desktop/forpush/openCV_Experimental/3.video/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/Desktop/forpush/openCV_Experimental/3.video/build/CMakeFiles/cv_video.dir
