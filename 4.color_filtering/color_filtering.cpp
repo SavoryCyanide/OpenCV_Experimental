@@ -1,5 +1,5 @@
 #include "opencv2/opencv.hpp"
-
+#include <iostream>
 using namespace cv;
 
 Mat greenFilter(const Mat& src); //Prototype
@@ -22,6 +22,14 @@ int main(int argc, char** argv)
         Mat onlyGreen = greenFilter(frame);
 
         imshow("Only green", onlyGreen);
+        imshow("Regular", frame);
+
+        if( waitKey(1) == 32 )
+        {
+            imwrite("regular.jpg", frame);
+            imwrite("filtered.jpg", onlyGreen);
+            std::cout << "frame set saved";
+        }
 
         if( waitKey(1) == 27 ) 
             break; // stop capturing by pressing ESC 
@@ -34,7 +42,7 @@ Mat greenFilter(const Mat& src)
     assert(src.type() == CV_8UC3);
 
     Mat greenOnly;
-    inRange(src, Scalar(0, 50, 0), Scalar(20, 255, 20), greenOnly);
+    inRange(src, Scalar(0, 0, 0), Scalar(20, 255, 20), greenOnly);
 
     return greenOnly;
 }

@@ -1,4 +1,4 @@
-# Install script for directory: /home/cyanide/Desktop/openCV_Experimental/4.color_filtering
+# Install script for directory: /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

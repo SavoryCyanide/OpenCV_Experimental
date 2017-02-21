@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/cyanide/Desktop/openCV_Experimental/4.color_filtering
+CMAKE_SOURCE_DIR = /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build
+CMAKE_BINARY_DIR = /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/cv_color_filtering.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/cv_color_filtering.dir/flags.make
 
 CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.o: CMakeFiles/cv_color_filtering.dir/flags.make
 CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.o: ../color_filtering.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.o -c /home/cyanide/Desktop/openCV_Experimental/4.color_filtering/color_filtering.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.o -c /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/color_filtering.cpp
 
 CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cyanide/Desktop/openCV_Experimental/4.color_filtering/color_filtering.cpp > CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/color_filtering.cpp > CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.i
 
 CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cyanide/Desktop/openCV_Experimental/4.color_filtering/color_filtering.cpp -o CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/color_filtering.cpp -o CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.s
 
 CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.o.requires:
 
@@ -90,24 +90,36 @@ cv_color_filtering_EXTERNAL_OBJECTS =
 
 cv_color_filtering: CMakeFiles/cv_color_filtering.dir/color_filtering.cpp.o
 cv_color_filtering: CMakeFiles/cv_color_filtering.dir/build.make
-cv_color_filtering: /usr/local/lib/libopencv_shape.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_stitching.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_superres.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_videostab.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_objdetect.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_calib3d.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_features2d.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_flann.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_highgui.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_ml.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_photo.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_video.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_videoio.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_imgcodecs.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_imgproc.so.3.2.0
-cv_color_filtering: /usr/local/lib/libopencv_core.so.3.2.0
+cv_color_filtering: /usr/lib/libopencv_vstab.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_imuvstab.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_facedetect.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_esm_panorama.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_detection_based_tracker.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_videostab.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_ts.a
+cv_color_filtering: /usr/lib/libopencv_superres.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_contrib.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_tegra.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_stitching.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_gpu.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_photo.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_legacy.so.2.4.13
+cv_color_filtering: /usr/local/cuda-8.0/lib64/libcufft.so
+cv_color_filtering: /usr/lib/libopencv_video.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_objdetect.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_ml.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_calib3d.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_features2d.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_highgui.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_imgproc.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_flann.so.2.4.13
+cv_color_filtering: /usr/lib/libopencv_core.so.2.4.13
+cv_color_filtering: /usr/local/cuda-8.0/lib64/libcudart.so
+cv_color_filtering: /usr/local/cuda-8.0/lib64/libnppc.so
+cv_color_filtering: /usr/local/cuda-8.0/lib64/libnppi.so
+cv_color_filtering: /usr/local/cuda-8.0/lib64/libnpps.so
 cv_color_filtering: CMakeFiles/cv_color_filtering.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable cv_color_filtering"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable cv_color_filtering"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cv_color_filtering.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -124,6 +136,6 @@ CMakeFiles/cv_color_filtering.dir/clean:
 .PHONY : CMakeFiles/cv_color_filtering.dir/clean
 
 CMakeFiles/cv_color_filtering.dir/depend:
-	cd /home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cyanide/Desktop/openCV_Experimental/4.color_filtering /home/cyanide/Desktop/openCV_Experimental/4.color_filtering /home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build /home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build /home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build/CMakeFiles/cv_color_filtering.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/build /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/build /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/build/CMakeFiles/cv_color_filtering.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/cv_color_filtering.dir/depend
 
