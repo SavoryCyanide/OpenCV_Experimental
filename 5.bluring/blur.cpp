@@ -10,7 +10,6 @@ int main(int argc, char** argv)
 
     if(!cap.open(0))
         return 0;
-
     for(;;)
     {
         Mat frame;
