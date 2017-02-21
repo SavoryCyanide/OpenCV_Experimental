@@ -9,6 +9,8 @@
 /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/color_filtering.cpp
 opencv2/opencv.hpp
 /home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/opencv2/opencv.hpp
+opencv2/highgui/highgui.hpp
+/home/ubuntu/Desktop/openCV_Experimental/4.color_filtering/opencv2/highgui/highgui.hpp
 iostream
 -
 

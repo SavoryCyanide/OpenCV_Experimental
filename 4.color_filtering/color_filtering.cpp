@@ -1,4 +1,5 @@
 #include "opencv2/opencv.hpp"
+#include "opencv2/highgui/highgui.hpp"
 #include <iostream>
 using namespace cv;
 
@@ -11,6 +12,18 @@ int main(int argc, char** argv)
     if(!cap.open(0))
         return 0;
 
+     //Create trackbar
+    namedWindow("Only green", 1);
+    int maxRed = 0;
+    createTrackbar("R", "Only green", &maxRed, 255);
+
+    int maxGreen = 0;
+    createTrackbar("G", "Only green", &maxGreen, 255);
+
+    int maxBlue = 0;
+    createTrackbar("B", "Only green", &maxBlue, 255);
+    
+
     for(;;)
     {
         Mat frame;
@@ -19,7 +32,7 @@ int main(int argc, char** argv)
         if( frame.empty() ) 
             break; // end of video stream
 
-        Mat onlyGreen = greenFilter(frame);
+        Mat onlyGreen = greenFilter(frame, maxRed, maxGreen, maxBlue);
 
         imshow("Only green", onlyGreen);
         imshow("Regular", frame);
@@ -37,12 +50,12 @@ int main(int argc, char** argv)
     return 0;
 }
 
-Mat greenFilter(const Mat& src)
+Mat greenFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue)
 {
     assert(src.type() == CV_8UC3);
 
     Mat greenOnly;
-    inRange(src, Scalar(0, 0, 0), Scalar(20, 255, 20), greenOnly);
+    inRange(src, Scalar(80, 20, 10), Scalar(maxRed, maxGreen, maxBlue), greenOnly);
 
     return greenOnly;
 }
