@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/opencv 
+CXX_INCLUDES = -isystem /usr/local/include -isystem /usr/local/include/opencv 
 
