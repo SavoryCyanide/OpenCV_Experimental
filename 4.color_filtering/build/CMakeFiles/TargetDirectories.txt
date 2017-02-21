@@ -1,0 +1,3 @@
+/home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build/CMakeFiles/edit_cache.dir
+/home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build/CMakeFiles/rebuild_cache.dir
+/home/cyanide/Desktop/openCV_Experimental/4.color_filtering/build/CMakeFiles/cv_color_filtering.dir

@@ -8,4 +8,4 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_executable(cv_color_filtering color_filtering.cpp)
 
-target_link_libraries(cv_video ${OpenCV_LIBS})
+target_link_libraries(cv_color_filtering ${OpenCV_LIBS})
