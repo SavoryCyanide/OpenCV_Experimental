@@ -1,9 +1,12 @@
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include "processing.hpp"
 #include <iostream>
 using namespace cv;
 
-Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue); //Prototype
+//Prototypes
+Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue);
+
 
 int main(int argc, char** argv)
 {
@@ -19,31 +22,34 @@ int main(int argc, char** argv)
     int minGreen = 0;
     int minBlue = 0;
 
-    int maxRed = 255;
+    int maxRed = 179;
     int maxGreen = 255;
     int maxBlue = 255;
 
-    createTrackbar("Min R", "Color Filtered", &minRed, 255);
-    createTrackbar("Max R", "Color Filtered", &maxRed, 255);
+    createTrackbar("Min H", "Color Filtered", &minRed, 179);
+    createTrackbar("Max H", "Color Filtered", &maxRed, 179);
     
-    createTrackbar("Min G", "Color Filtered", &minGreen, 255);
-    createTrackbar("Max G", "Color Filtered", &maxGreen, 255);
+    createTrackbar("Min S", "Color Filtered", &minGreen, 255);
+    createTrackbar("Max S", "Color Filtered", &maxGreen, 255);
 
-    createTrackbar("Min B", "Color Filtered", &minBlue, 255);
-    createTrackbar("Max B", "Color Filtered", &maxBlue, 255);
+    createTrackbar("Min V", "Color Filtered", &minBlue, 255);
+    createTrackbar("Max V", "Color Filtered", &maxBlue, 255);
+    //
 
     for(;;)
     {
-        Mat frame;
+        Mat frame, blurred, filtered;
 
         cap >> frame;
         if( frame.empty() ) 
             break; // end of video stream
 
-        Mat filtered = colorFilter(frame, maxRed, maxGreen, maxBlue, minRed, minGreen, minBlue);
+        blurred = blur(frame, kernel, 
+        filtered = colorFilter(blurred, maxRed, maxGreen, maxBlue, minRed, minGreen, minBlue);
 
-        imshow("Color Filtered", filtered);
         imshow("Regular", frame);
+        imshow("Blurred", blurred);
+        imshow("Color Filtered", filtered);
 
         if( waitKey(1) == 32 )
         {
@@ -58,12 +64,4 @@ int main(int argc, char** argv)
     return 0;
 }
 
-Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue)
-{
-    assert(src.type() == CV_8UC3);
 
-    Mat filtered;
-    inRange(src, Scalar(minRed, minGreen, minBlue), Scalar(maxRed, maxGreen, maxBlue), filtered);
-
-    return filtered;
-}
