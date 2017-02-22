@@ -62,10 +62,7 @@ int main(int argc, char** argv)
 Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue)
 {
     assert(src.type() == CV_8UC3);
-
-    Mat hsv; 
-    Mat filtered;
-    Mat res;
+    Mat hsv, filtered, res;
 
     cvtColor(src, hsv, CV_BGR2HSV); //Converts BGR to HSV for hues
     inRange(hsv, Scalar(minRed, minGreen, minBlue), Scalar(maxRed, maxGreen, maxBlue), filtered);
