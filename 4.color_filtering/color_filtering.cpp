@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace cv;
 
-Mat greenFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue); //Prototype
+Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue); //Prototype
 
 int main(int argc, char** argv)
 {
@@ -13,7 +13,7 @@ int main(int argc, char** argv)
         return 0;
 
     //Create trackbar
-    namedWindow("Only green", 1);
+    namedWindow("Color Filtered", 1);
 
     int minRed = 0;
     int minGreen = 0;
@@ -23,14 +23,14 @@ int main(int argc, char** argv)
     int maxGreen = 255;
     int maxBlue = 255;
 
-    createTrackbar("Min R", "Only green", &minRed, 255);
-    createTrackbar("Max R", "Only green", &maxRed, 255);
+    createTrackbar("Min R", "Color Filtered", &minRed, 255);
+    createTrackbar("Max R", "Color Filtered", &maxRed, 255);
     
-    createTrackbar("Min G", "Only green", &minGreen, 255);
-    createTrackbar("Max G", "Only green", &maxGreen, 255);
+    createTrackbar("Min G", "Color Filtered", &minGreen, 255);
+    createTrackbar("Max G", "Color Filtered", &maxGreen, 255);
 
-    createTrackbar("Min B", "Only green", &minBlue, 255);
-    createTrackbar("Max B", "Only green", &maxBlue, 255);
+    createTrackbar("Min B", "Color Filtered", &minBlue, 255);
+    createTrackbar("Max B", "Color Filtered", &maxBlue, 255);
 
     for(;;)
     {
@@ -40,30 +40,30 @@ int main(int argc, char** argv)
         if( frame.empty() ) 
             break; // end of video stream
 
-        Mat onlyGreen = greenFilter(frame, maxRed, maxGreen, maxBlue, minRed, minGreen, minBlue);
+        Mat filtered = colorFilter(frame, maxRed, maxGreen, maxBlue, minRed, minGreen, minBlue);
 
-        imshow("Only green", onlyGreen);
+        imshow("Color Filtered", filtered);
         imshow("Regular", frame);
 
         if( waitKey(1) == 32 )
         {
             imwrite("regular.jpg", frame);
-            imwrite("filtered.jpg", onlyGreen);
+            imwrite("filtered.jpg", filtered);
             std::cout << "frame set saved";
         }
 
         if( waitKey(1) == 27 ) 
-            break; // stop capturing by pressing ESC 
+            break; // stop capturing by holding ESC 
     }
     return 0;
 }
 
-Mat greenFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue)
+Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue)
 {
     assert(src.type() == CV_8UC3);
 
-    Mat greenOnly;
-    inRange(src, Scalar(minRed, minGreen, minBlue), Scalar(maxRed, maxGreen, maxBlue), greenOnly);
+    Mat filtered;
+    inRange(src, Scalar(minRed, minGreen, minBlue), Scalar(maxRed, maxGreen, maxBlue), filtered);
 
-    return greenOnly;
+    return filtered;
 }
