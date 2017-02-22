@@ -23,14 +23,14 @@ int main(int argc, char** argv)
     int maxGreen = 255;
     int maxBlue = 255;
 
-    createTrackbar("Min R", "Color Filtered", &minRed, 179);
-    createTrackbar("Max R", "Color Filtered", &maxRed, 179);
+    createTrackbar("Min H", "Color Filtered", &minRed, 179);
+    createTrackbar("Max H", "Color Filtered", &maxRed, 179);
     
-    createTrackbar("Min G", "Color Filtered", &minGreen, 255);
-    createTrackbar("Max G", "Color Filtered", &maxGreen, 255);
+    createTrackbar("Min S", "Color Filtered", &minGreen, 255);
+    createTrackbar("Max S", "Color Filtered", &maxGreen, 255);
 
-    createTrackbar("Min B", "Color Filtered", &minBlue, 255);
-    createTrackbar("Max B", "Color Filtered", &maxBlue, 255);
+    createTrackbar("Min V", "Color Filtered", &minBlue, 255);
+    createTrackbar("Max V", "Color Filtered", &maxBlue, 255);
     //
 
     for(;;)
