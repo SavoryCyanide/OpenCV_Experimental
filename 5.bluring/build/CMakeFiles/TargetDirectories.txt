@@ -1,3 +1,0 @@
-/home/cyanide/Desktop/openCV_Experimental/5.bluring/build/CMakeFiles/edit_cache.dir
-/home/cyanide/Desktop/openCV_Experimental/5.bluring/build/CMakeFiles/rebuild_cache.dir
-/home/cyanide/Desktop/openCV_Experimental/5.bluring/build/CMakeFiles/cv_blur.dir

@@ -1,3 +1,0 @@
-/home/cyanide/Desktop/openCV_Experimental/3.video/build/CMakeFiles/edit_cache.dir
-/home/cyanide/Desktop/openCV_Experimental/3.video/build/CMakeFiles/rebuild_cache.dir
-/home/cyanide/Desktop/openCV_Experimental/3.video/build/CMakeFiles/cv_video.dir

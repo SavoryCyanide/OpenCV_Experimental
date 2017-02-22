@@ -1,3 +1,0 @@
-/home/ubuntu/Desktop/vis2017/testing_area/build/CMakeFiles/edit_cache.dir
-/home/ubuntu/Desktop/vis2017/testing_area/build/CMakeFiles/rebuild_cache.dir
-/home/ubuntu/Desktop/vis2017/testing_area/build/CMakeFiles/cv_hello.dir
