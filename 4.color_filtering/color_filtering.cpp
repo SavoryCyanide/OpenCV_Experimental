@@ -19,18 +19,19 @@ int main(int argc, char** argv)
     int minGreen = 0;
     int minBlue = 0;
 
-    int maxRed = 255;
+    int maxRed = 179;
     int maxGreen = 255;
     int maxBlue = 255;
 
-    createTrackbar("Min R", "Color Filtered", &minRed, 255);
-    createTrackbar("Max R", "Color Filtered", &maxRed, 255);
+    createTrackbar("Min R", "Color Filtered", &minRed, 179);
+    createTrackbar("Max R", "Color Filtered", &maxRed, 179);
     
     createTrackbar("Min G", "Color Filtered", &minGreen, 255);
     createTrackbar("Max G", "Color Filtered", &maxGreen, 255);
 
     createTrackbar("Min B", "Color Filtered", &minBlue, 255);
     createTrackbar("Max B", "Color Filtered", &maxBlue, 255);
+    //
 
     for(;;)
     {
@@ -62,8 +63,13 @@ Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRe
 {
     assert(src.type() == CV_8UC3);
 
+    Mat hsv; 
     Mat filtered;
-    inRange(src, Scalar(minRed, minGreen, minBlue), Scalar(maxRed, maxGreen, maxBlue), filtered);
+    Mat res;
 
-    return filtered;
+    cvtColor(src, hsv, CV_BGR2HSV); //Converts BGR to HSV for hues
+    inRange(hsv, Scalar(minRed, minGreen, minBlue), Scalar(maxRed, maxGreen, maxBlue), filtered);
+    bitwise_and(src,src,res,filtered = filtered); //Puts color in remaining pixels
+
+    return res;
 }
