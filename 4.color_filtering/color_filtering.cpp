@@ -7,7 +7,7 @@ Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRe
 
 int main(int argc, char** argv)
 {
-    VideoCapture cap;
+    VideoCapture cap(1);
 
     if(!cap.open(0))
         return 0;

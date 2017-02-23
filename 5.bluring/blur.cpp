@@ -1,10 +1,10 @@
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui/highgui.hpp"
-#include "processing.hpp"
 #include <iostream>
 using namespace cv;
 
 //Prototypes
+Mat blur(const Mat& src);
 Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue);
 
 
@@ -17,6 +17,7 @@ int main(int argc, char** argv)
 
     //Create trackbar
     namedWindow("Color Filtered", 1);
+    namedWindow("Blurred", 1);
 
     int minRed = 0;
     int minGreen = 0;
@@ -34,7 +35,7 @@ int main(int argc, char** argv)
 
     createTrackbar("Min V", "Color Filtered", &minBlue, 255);
     createTrackbar("Max V", "Color Filtered", &maxBlue, 255);
-    //
+
 
     for(;;)
     {
@@ -44,7 +45,7 @@ int main(int argc, char** argv)
         if( frame.empty() ) 
             break; // end of video stream
 
-        blurred = blur(frame, kernel, 
+        blurred = blur(frame);
         filtered = colorFilter(blurred, maxRed, maxGreen, maxBlue, minRed, minGreen, minBlue);
 
         imshow("Regular", frame);
@@ -64,4 +65,25 @@ int main(int argc, char** argv)
     return 0;
 }
 
+//Blur
+Mat blur(const Mat& src)
+{
+    Mat blurred;
 
+    GaussianBlur(src, blurred, Size(15,15), 0, 0);
+
+    return blurred;
+}
+
+//Color filter
+Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue)
+{
+    assert(src.type() == CV_8UC3);
+    Mat hsv, filtered, res;
+
+    cvtColor(src, hsv, CV_BGR2HSV); //Converts BGR to HSV for hues
+    inRange(hsv, Scalar(minRed, minGreen, minBlue), Scalar(maxRed, maxGreen, maxBlue), filtered);
+    bitwise_and(src,src,res,filtered = filtered); //Puts color in remaining pixels
+
+    return res;
+}
