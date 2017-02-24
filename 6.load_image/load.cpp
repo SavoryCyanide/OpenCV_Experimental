@@ -5,120 +5,70 @@ using namespace cv;
 
 //Prototypes
 Mat blur(const Mat& src);
-Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue);
+Mat colorFilter(const Mat& src, int maxH, int maxS, int maxV, int minH, int minS, int minV);
 
 
 int main(int argc, char** argv)
 {
-    bool picture = true; //Change to use picture or video
+    VideoCapture cap;
 
-    if (picture == true)
-    {
-        namedWindow("Color Filtered", 1);
-        namedWindow("Blurred", 1);
+    if(!cap.open(0))
+        return 0;
 
-        int minRed = 0;
-        int minGreen = 0;
-        int minBlue = 0;
+    //Create trackbar
+    namedWindow("Color Filtered", 1);
+    namedWindow("Blurred", 1);
 
-        int maxRed = 179;
-        int maxGreen = 255;
-        int maxBlue = 255;
+    int minH = 44;
+    int minS = 0;
+    int minV = 226;
 
-        createTrackbar("Min H", "Color Filtered", &minRed, 179);
-        createTrackbar("Max H", "Color Filtered", &maxRed, 179);
+    int maxH = 84;
+    int maxS = 67;
+    int maxV = 255;
+
+    createTrackbar("Min H", "Color Filtered", &minH, 179);
+    createTrackbar("Max H", "Color Filtered", &maxH, 179);
     
-        createTrackbar("Min S", "Color Filtered", &minGreen, 255);
-        createTrackbar("Max S", "Color Filtered", &maxGreen, 255);
+    createTrackbar("Min S", "Color Filtered", &minS, 255);
+    createTrackbar("Max S", "Color Filtered", &maxS, 255);
 
-        createTrackbar("Min V", "Color Filtered", &minBlue, 255);
-        createTrackbar("Max V", "Color Filtered", &maxBlue, 255);
+    createTrackbar("Min V", "Color Filtered", &minV, 255);
+    createTrackbar("Max V", "Color Filtered", &maxV, 255);
 
+    //true = video , false = picture
+    bool videoBool = false;
+    String loadPic = "dark.jpg";
 
-        for(;;)
-        {
-            Mat frame, blurred, filtered;
-
-            frame = imread("regular.jpg", 1);
-
-            blurred = blur(frame);
-            filtered = colorFilter(blurred, maxRed, maxGreen, maxBlue, minRed, minGreen, minBlue);
-
-            imshow("Regular", frame);
-            imshow("Blurred", blurred);
-            imshow("Color Filtered", filtered);
-
-            if( waitKey(1) == 32 )
-            {
-                imwrite("regular.jpg", frame);
-                imwrite("filtered.jpg", filtered);
-                std::cout << "frame set saved";
-            }
-
-            if( waitKey(1) == 27 ) 
-                break; // stop capturing by holding ESC 
-        }
-
-        
-
-    }
-
-    else
+    for(;;)
     {
-        VideoCapture cap;
+        Mat frame, blurred, filtered;
 
-        if(!cap.open(0))
-            return 0;
-
-        //Create trackbar
-        namedWindow("Color Filtered", 1);
-        namedWindow("Blurred", 1);
-
-        int minRed = 0;
-        int minGreen = 0;
-        int minBlue = 0;
-
-        int maxRed = 179;
-        int maxGreen = 255;
-        int maxBlue = 255;
-
-        createTrackbar("Min H", "Color Filtered", &minRed, 179);
-        createTrackbar("Max H", "Color Filtered", &maxRed, 179);
-    
-        createTrackbar("Min S", "Color Filtered", &minGreen, 255);
-        createTrackbar("Max S", "Color Filtered", &maxGreen, 255);
-
-        createTrackbar("Min V", "Color Filtered", &minBlue, 255);
-        createTrackbar("Max V", "Color Filtered", &maxBlue, 255);
-
-
-        for(;;)
-        {
-            Mat frame, blurred, filtered;
-
+        if (videoBool == true)
             cap >> frame;
-            if( frame.empty() ) 
-                break; // end of video stream
+        else
+            frame = imread(loadPic, 1);
 
-            blurred = blur(frame);
-            filtered = colorFilter(blurred, maxRed, maxGreen, maxBlue, minRed, minGreen, minBlue);
+        if( frame.empty() ) 
+            break; // end of video stream
 
-            imshow("Regular", frame);
-            imshow("Blurred", blurred);
-            imshow("Color Filtered", filtered);
+        blurred = blur(frame);
+        filtered = colorFilter(blurred, maxH, maxS, maxV, minH, minS, minV);
 
-            if( waitKey(1) == 32 )
-            {
-                imwrite("regular.jpg", frame);
-                imwrite("filtered.jpg", filtered);
-                std::cout << "frame set saved";
-            }
+        imshow("Regular", frame);
+        imshow("Blurred", blurred);
+        imshow("Color Filtered", filtered);
 
-            if( waitKey(1) == 27 ) 
-                break; // stop capturing by holding ESC 
+        if( waitKey(1) == 32 )
+        {
+            imwrite("regular.jpg", frame);
+            imwrite("filtered.jpg", filtered);
+            std::cout << "frame set saved";
         }
-    }
 
+        if( waitKey(1) == 27 ) 
+            break; // stop capturing by holding ESC 
+    }
     return 0;
 }
 
@@ -133,13 +83,13 @@ Mat blur(const Mat& src)
 }
 
 //Color filter
-Mat colorFilter(const Mat& src, int maxRed, int maxGreen, int maxBlue, int minRed, int minGreen, int minBlue)
+Mat colorFilter(const Mat& src, int maxH, int maxS, int maxV, int minH, int minS, int minV)
 {
     assert(src.type() == CV_8UC3);
     Mat hsv, filtered, res;
 
     cvtColor(src, hsv, CV_BGR2HSV); //Converts BGR to HSV for hues
-    inRange(hsv, Scalar(minRed, minGreen, minBlue), Scalar(maxRed, maxGreen, maxBlue), filtered);
+    inRange(hsv, Scalar(minH, minS, minV), Scalar(maxH, maxS, maxV), filtered);
     bitwise_and(src,src,res,filtered = filtered); //Puts color in remaining pixels
 
     return res;
