@@ -41,7 +41,7 @@ int main(int argc, char** argv)
     createTrackbar("Min V", "Color Filtered", &minV, 255);
     createTrackbar("Max V", "Color Filtered", &maxV, 255);
 
-    int contour_thresh = 255;
+    int contour_thresh = 450;
     createTrackbar("Contour Thresh", "Contour", &contour_thresh, 500);
 
     //true = video , false = picture
@@ -127,16 +127,14 @@ Mat contour(const Mat& src, int thresh)
     imshow("canny output", canny_output);
 
     /// Find contours
-    findContours( canny_output, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE ); //SOMETHING BROKEN HERE
-
-    //imshow("contourz", contours);
+    findContours( canny_output, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
 
     /// Draw contours
     Mat drawing = Mat::zeros(src.rows, src.cols, CV_8UC3);
 
     for( int i = 0; i< contours.size(); i++ )
     {
-        Scalar color = Scalar(0, 0, 0);
+        Scalar color = Scalar(255, 255, 255);
         drawContours( drawing, contours, i, color, 2, 8, hierarchy, 0, Point() );
     }
 
