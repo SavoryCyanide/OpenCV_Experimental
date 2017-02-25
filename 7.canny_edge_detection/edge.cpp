@@ -1,11 +1,14 @@
 #include "opencv2/opencv.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
 using namespace cv;
+using namespace std;
 
 //Prototypes
 Mat blur(const Mat& src);
 Mat colorFilter(const Mat& src, int maxH, int maxS, int maxV, int minH, int minS, int minV);
+Mat contour(const Mat& src, int thresh);
 
 
 int main(int argc, char** argv)
@@ -18,7 +21,9 @@ int main(int argc, char** argv)
     //Create trackbar
     namedWindow("Color Filtered", 1);
     namedWindow("Blurred", 1);
+    namedWindow("Contour", 1);
 
+    //Starting HSV values
     int minH = 44;
     int minS = 0;
     int minV = 226;
@@ -36,13 +41,16 @@ int main(int argc, char** argv)
     createTrackbar("Min V", "Color Filtered", &minV, 255);
     createTrackbar("Max V", "Color Filtered", &maxV, 255);
 
+    int contour_thresh = 255;
+    createTrackbar("Contour Thresh", "Contour", &contour_thresh, 255);
+
     //true = video , false = picture
     bool videoBool = false;
     String loadPic = "dark.jpg";
 
     for(;;)
     {
-        Mat frame, blurred, filtered;
+        Mat frame, blurred, filtered, contoured;
 
         if (videoBool == true)
             cap >> frame;
@@ -52,12 +60,17 @@ int main(int argc, char** argv)
         if( frame.empty() ) 
             break; // end of video stream
 
+
+        //PROCESSING/////////////////////////
         blurred = blur(frame);
         filtered = colorFilter(blurred, maxH, maxS, maxV, minH, minS, minV);
+        contoured = contour(filtered, contour_thresh);
+        ////////////////////////////////////
 
         imshow("Regular", frame);
         imshow("Blurred", blurred);
         imshow("Color Filtered", filtered);
+        imshow("Contour", contoured);
 
         if( waitKey(1) == 32 )
         {
@@ -73,7 +86,7 @@ int main(int argc, char** argv)
 }
 
 //Blur
-Mat blur(const Mat& src)
+Mat blur(const Mat& src)	
 {
     Mat blurred;
 
@@ -94,3 +107,39 @@ Mat colorFilter(const Mat& src, int maxH, int maxS, int maxV, int minH, int minS
 
     return res;
 }
+
+//Contour
+Mat contour(const Mat& src, int thresh)
+{
+    Mat src_gray, canny_output;
+
+    cvtColor(src, src_gray, CV_HSV2RGB);
+    cvtColor(src_gray, src_gray, CV_RGB2GRAY);
+
+    imshow("Gray", src_gray);
+
+    vector<vector<Point> > contours;
+    vector<Vec4i> hierarchy;
+
+    /// Detect edges using canny
+    Canny(src_gray , canny_output, thresh, thresh*2, 3 );
+
+    imshow("canny output", canny_output);
+
+    /// Find contours
+    findContours( canny_output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+
+    //imshow("contourz", contours);
+
+    /// Draw contours
+    Mat drawing = Mat::zeros( canny_output.size(), CV_8UC3 );
+
+    for( int i = 0; i< contours.size(); i++ )
+    {
+        Scalar color = Scalar(0, 0, 0);
+        drawContours( drawing, contours, i, color, 2, 8, hierarchy, 0, Point() );
+    }
+
+    return drawing;
+}
+
