@@ -42,7 +42,7 @@ int main(int argc, char** argv)
     createTrackbar("Max V", "Color Filtered", &maxV, 255);
 
     int contour_thresh = 255;
-    createTrackbar("Contour Thresh", "Contour", &contour_thresh, 255);
+    createTrackbar("Contour Thresh", "Contour", &contour_thresh, 500);
 
     //true = video , false = picture
     bool videoBool = false;
@@ -68,7 +68,7 @@ int main(int argc, char** argv)
         ////////////////////////////////////
 
         imshow("Regular", frame);
-        imshow("Blurred", blurred);
+        //imshow("Blurred", blurred);
         imshow("Color Filtered", filtered);
         imshow("Contour", contoured);
 
@@ -116,7 +116,7 @@ Mat contour(const Mat& src, int thresh)
     cvtColor(src, src_gray, CV_HSV2RGB);
     cvtColor(src_gray, src_gray, CV_RGB2GRAY);
 
-    imshow("Gray", src_gray);
+    //imshow("Gray", src_gray);
 
     vector<vector<Point> > contours;
     vector<Vec4i> hierarchy;
@@ -127,12 +127,12 @@ Mat contour(const Mat& src, int thresh)
     imshow("canny output", canny_output);
 
     /// Find contours
-    findContours( canny_output, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+    findContours( canny_output, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE ); //SOMETHING BROKEN HERE
 
     //imshow("contourz", contours);
 
     /// Draw contours
-    Mat drawing = Mat::zeros( canny_output.size(), CV_8UC3 );
+    Mat drawing = Mat::zeros(src.rows, src.cols, CV_8UC3);
 
     for( int i = 0; i< contours.size(); i++ )
     {
