@@ -57,9 +57,11 @@ int main(int argc, char** argv)
         else
             frame = imread(loadPic, 1);
 
-        if( frame.empty() ) 
+        if (frame.empty())
+        {
+            cout << "Photo \"" + loadPic + "\" not found, exiting\n";
             break; // end of video stream
-
+        }
 
         //PROCESSING/////////////////////////
         blurred = blur(frame);
