@@ -1,0 +1,2 @@
+-return vector instead of mat for contour
+-combine contour with convex hull

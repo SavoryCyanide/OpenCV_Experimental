@@ -20,7 +20,6 @@ int main(int argc, char** argv)
 
     //Create trackbar
     namedWindow("Color Filtered", 1);
-    namedWindow("Blurred", 1);
     namedWindow("Contour", 1);
 
     //Starting HSV values
@@ -129,13 +128,19 @@ Mat contour(const Mat& src, int thresh)
     /// Find contours
     findContours( canny_output, contours, hierarchy, CV_RETR_CCOMP, CV_CHAIN_APPROX_SIMPLE );
 
-    /// Draw contours
+    //Convex hull
+    vector<vector<Point> >hull( contours.size() );
+    for( int i = 0; i < contours.size(); i++ )
+    {  convexHull( Mat(contours[i]), hull[i], true ); }
+
+    // Draw
     Mat drawing = Mat::zeros(src.rows, src.cols, CV_8UC3);
 
     for( int i = 0; i< contours.size(); i++ )
     {
         Scalar color = Scalar(255, 255, 255);
-        drawContours( drawing, contours, i, color, 2, 8, hierarchy, 0, Point() );
+        //drawContours( drawing, contours, i, color, 2, 8, hierarchy, 0, Point() );
+        drawContours( drawing, hull, i, Scalar(0,255,0), 1, 8, vector<Vec4i>(), 0, Point() );
     }
 
     return drawing;
