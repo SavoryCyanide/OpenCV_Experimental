@@ -21,7 +21,7 @@ int main(int argc, char** argv)
 
     //Create trackbar
     namedWindow("Color Filtered", 1);
-    namedWindow("Blurred", 1);
+    //namedWindow("Blurred", 1);
     namedWindow("Contour", 1);
     namedWindow("Corner", 1);
 
